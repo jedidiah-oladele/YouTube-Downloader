@@ -1,5 +1,5 @@
 import pytube
-from pytube import Playlist, exceptions
+from pytube import exceptions
 
 
 class myvideo:
@@ -62,7 +62,7 @@ class myvideo:
         """Return a list of all video urls from a playlist"""
         
         try:
-            p = Playlist(playlist_link)
+            p = pytube.Playlist(playlist_link)
         except:
             return None
 
