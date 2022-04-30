@@ -1,5 +1,5 @@
 import pytube
-
+pytube = pytube()
 
 class myvideo:
 
