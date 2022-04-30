@@ -8,7 +8,7 @@ st.markdown("<h1 style='text-align:center'>YouTube Downloader</h1>", unsafe_allo
 
 url = st.text_input(label='', placeholder='Paste video or playlist URL')
 #url = 'https://youtu.be/Kq5iPtAc_3I'
-url = 'https://youtube.com/playlist?list=PLbHrOSG7nVN1z4XoLX7_RC-WkgZHc3tnV'
+#url = 'https://youtube.com/playlist?list=PLbHrOSG7nVN1z4XoLX7_RC-WkgZHc3tnV'
 # Checks if the url posted is a playlist
 is_playlist = url[20:28] == 'playlist'
 
