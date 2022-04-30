@@ -1,5 +1,4 @@
 import pytube
-from pytube import exceptions
 
 
 class myvideo:
@@ -12,13 +11,13 @@ class myvideo:
         self.error_message = None
         try:
             self.video = pytube.YouTube(self.video_url)
-        except exceptions.RegexMatchError:
+        except pytube.exceptions.RegexMatchError:
             self.error_message = "No video was found"
-        except exceptions.AgeRestrictedError:
+        except pytube.exceptions.AgeRestrictedError:
             self.error_message = "Video is age restricted"
-        except exceptions.LiveStreamError:
+        except pytube.exceptions.LiveStreamError:
             self.error_message = "Video is a live stream"
-        except exceptions.VideoPrivate:
+        except pytube.exceptions.VideoPrivate:
             self.error_message = "Video is private"
         except:
             self.error_message = "An unexpected error occured \nPlease make a report"
