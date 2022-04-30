@@ -1,7 +1,8 @@
-from pytube import YouTube, Playlist, exceptions
+import pytube
+from pytube import Playlist, exceptions
+
 
 class myvideo:
-
 
     def __init__(self, video_url):
         """Create pytube YouTube object from url"""
@@ -10,7 +11,7 @@ class myvideo:
         # Error handling, with meaningful feedbacks
         self.error_message = None
         try:
-            self.video = YouTube(self.video_url)
+            self.video = pytube.YouTube(self.video_url)
         except exceptions.RegexMatchError:
             self.error_message = "No video was found"
         except exceptions.AgeRestrictedError:
