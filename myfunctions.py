@@ -1,8 +1,9 @@
-import pytube
-from pytube import __init__.py
-pytube = __init__.py()
+from pytube import YouTube, Playlist, exceptions
+import streamlit as st
 
+@st.cache(allow_output_mutation=True, show_spinner=False)
 class myvideo:
+
 
     def __init__(self, video_url):
         """Create pytube YouTube object from url"""
@@ -11,14 +12,14 @@ class myvideo:
         # Error handling, with meaningful feedbacks
         self.error_message = None
         try:
-            self.video = pytube.YouTube(self.video_url)
-        except pytube.exceptions.RegexMatchError:
-            self.error_message = "No video was found"
-        except pytube.exceptions.AgeRestrictedError:
+            self.video = YouTube(self.video_url)
+        except exceptions.RegexMatchError:
+            self.error_message = "Could not find any video"
+        except exceptions.AgeRestrictedError:
             self.error_message = "Video is age restricted"
-        except pytube.exceptions.LiveStreamError:
+        except exceptions.LiveStreamError:
             self.error_message = "Video is a live stream"
-        except pytube.exceptions.VideoPrivate:
+        except exceptions.VideoPrivate:
             self.error_message = "Video is private"
         except:
             self.error_message = "An unexpected error occured \nPlease make a report"
@@ -51,20 +52,22 @@ class myvideo:
     def download_video(self, resolution):
             """Download and return a video file"""
 
-            # TODO choose resolution option
-            # TODO filename_prefix
             file = self.video.streams.get_by_resolution(resolution).download()
+            
             return file
 
 
 
+    
     def get_playlist_videos(playlist_link):
         """Return a list of all video urls from a playlist"""
         
         try:
-            p = pytube.Playlist(playlist_link)
+            p = Playlist(playlist_link)
+            total_lenght = sum(vid.length for vid in p.videos)
         except:
             return None
 
         video_urls = [url for url in p.video_urls]
-        return video_urls
+        return {'urls': video_urls,
+                'lenght': total_lenght}
