@@ -1,0 +1,4 @@
+- Download audio only
+- Download all, download highest res, lowest Res, 360p
+- Use button hint to properly explain
+- Download feedback
